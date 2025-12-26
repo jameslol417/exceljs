@@ -261,6 +261,8 @@ export interface Borders {
 	bottom: Partial<Border>;
 	right: Partial<Border>;
 	diagonal: Partial<BorderDiagonal>;
+	vertical: Partial<Border>;
+	horizontal: Partial<Border>;
 }
 
 export interface Margins {

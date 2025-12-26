@@ -65,6 +65,35 @@ const expectations = [
     tests: ['render', 'renderIn', 'parse'],
   },
   {
+    title: 'Vertical & Horizontal (inside borders)',
+    create() {
+      return new BorderXform();
+    },
+    preparedModel: {
+      vertical: {color: {argb: 'FFFF0000'}, style: 'thin'},
+      horizontal: {color: {argb: 'FFFF0000'}, style: 'thin'},
+    },
+    xml:
+      '<border><left/><right/><top/><bottom/><diagonal/><vertical style="thin"><color rgb="FFFF0000"/></vertical><horizontal style="thin"><color rgb="FFFF0000"/></horizontal></border>',
+    get parsedModel() {
+      return this.preparedModel;
+    },
+    tests: ['render', 'renderIn', 'parse'],
+  },
+  {
+    title: 'Parse border with empty vertical/horizontal tags (common in dxfs)',
+    create() {
+      return new BorderXform();
+    },
+    xml:
+      '<border><left style="thin"><color rgb="FFFF0000"/></left><right style="thin"><color rgb="FFFF0000"/></right><top/><bottom/><vertical/><horizontal/></border>',
+    parsedModel: {
+      left: {color: {argb: 'FFFF0000'}, style: 'thin'},
+      right: {color: {argb: 'FFFF0000'}, style: 'thin'},
+    },
+    tests: ['parse'],
+  },
+  {
     title: 'Missing Style',
     create() {
       return new BorderXform();
